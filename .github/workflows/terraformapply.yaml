@@ -1,9 +1,13 @@
 
-name: 'Terraform Apply'
+name: 'Terraform Apply/Destroy'
 
 on:
    workflow_dispatch:
-
+      inputs:
+         action:
+         description: "Apply or Destroy"
+         required: true
+         default: "apply"
 
 jobs:
   terraform:
@@ -50,6 +54,6 @@ jobs:
       working-directory: ${{env.working-directory}}
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-    - name: Terraform Apply
-      run: terraform apply -auto-approve  
+    - name: Terraform Apply/Destroy
+      run: terraform  ${{ github.event.inputs.action }} -auto-approve  
       working-directory: ${{env.working-directory}}
