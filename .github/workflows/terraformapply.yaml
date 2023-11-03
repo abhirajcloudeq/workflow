@@ -2,13 +2,12 @@
 name: 'Terraform Apply/Destroy'
 
 on:
-   workflow_dispatch:
-      inputs:
-         action:
-         description: "Apply or Destroy"
-         required: true
-         default: "apply"
-
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Apply or Destroy"
+        required: true
+        default: "apply" 
 jobs:
   terraform:
     name: 'Terraform'
